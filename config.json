@@ -1,0 +1,56 @@
+{
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "images/icon.png",
+    "category": "message"
+  },
+  "type": "REST",
+  "key": "Mock_CustomActivity",
+  "lang": {
+    "en-US": {
+      "name": "Mock Custom Activity",
+      "description": "Realiza una llamada a un WS Mock"
+    }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [],
+      "url": "https://customactivity-mock.onrender.com/execute",
+      "verb": "POST",
+      "format": "json",
+      "useJwt": true,
+      "timeout": 10000
+    }
+  },
+  "configurationArguments": {
+    "save": {
+      "url": "https://customactivity-mock.onrender.com/save",
+      "useJwt": true
+    },
+    "publish": {
+      "url": "https://customactivity-mock.onrender.com/publish",
+      "useJwt": true
+    },
+    "validate": {
+      "url": "https://customactivity-mock.onrender.com/validate",
+      "useJwt": true
+    },
+    "stop": {
+      "url": "https://customactivity-mock.onrender.com/stop",
+      "useJwt": true
+    }
+  },
+  "userInterfaces": {
+    "configModal": {
+      "height": 500,
+      "width": 600,
+      "fullscreen": false,
+      "url": "https://customactivity-mock.onrender.com/config.html"
+    }
+  },
+  "edit": {
+    "url": "https://customactivity-mock.onrender.com/config.html",
+    "height": 500,
+    "width": 600
+  }
+}

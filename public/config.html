@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Custom Activity Mock</title>
+    <script src="https://unpkg.com/postmonger"></script>
+    <!-- Enlazamos la hoja de estilos externa -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>    
+    <!-- Contenedor para el mensaje de carga o error. Visible por defecto. -->
+    <div id="loader-container">
+      <p>Cargando configuración...</p>
+    </div>
+
+    <!-- Contenedor para todo el formulario. Oculto por defecto. -->
+    <div id="form-container">
+      <div class="header">
+        <h2>Configuración de la Actividad</h2>
+      </div>
+      
+      <div class="info-box info">
+        <p>Configure los parámetros que se enviarán al servicio externo para cada contacto en el Journey.</p>
+      </div>
+
+      <!-- Sección de Configuración Estática -->
+      <div class="form-section">
+        <h3 class="section-title">Parámetros Estáticos</h3>
+        <div class="form-field">
+          <label for="text-input">Texto de Referencia</label>
+          <input type="text" id="text-input" placeholder="Introduzca un valor de texto"/>
+          <div class="field-desc">Este valor se enviará como 'customText' en los argumentos.</div>
+        </div>
+        
+        <div class="form-field">
+          <label for="template-picklist">Plantilla Fija</label>
+          <select id="template-picklist">
+            <option value="Template1">Template Fija 1</option>
+            <option value="Template2">Template Fija 2</option>
+            <option value="Template3">Template Fija 3</option>
+          </select>
+          <div class="field-desc">La plantilla seleccionada se enviará como 'selectedTemplate'.</div>
+        </div>
+      </div>
+
+      <!-- Sección de Configuración Dinámica -->
+      <div class="form-section">
+        <h3 class="section-title">Parámetros Dinámicos</h3>
+        <div class="form-field">
+          <label for="template-de-picklist">Plantilla desde Data Extension</label>
+          <select id="template-de-picklist">
+              <option value="">-- Cargando templates... --</option>
+          </select>
+          <div class="field-desc">La plantilla seleccionada se guardará como 'selectedTemplateId'.</div>
+          <div id="template-message-preview" style="margin-top: 10px; padding: 10px; background-color: #f3f3f3; border-radius: 4px; font-style: italic; display: none;">
+              <strong>Mensaje:</strong> <span id="message-text"></span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="de-field-picklist">Campo de la Fuente de Entrada</label>
+          <select id="de-field-picklist">
+              <option value="">-- Campos de la DE... --</option>
+          </select>
+          <div class="field-desc">
+            Seleccione un campo de la Data Extension de entrada del Journey.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box note">
+        <strong>Nota:</strong> Asegúrese de que los campos 'MobilePhone', 'SMSMessage' y 'SMSFrom' existan en la fuente de entrada del Journey.
+      </div>
+    </div>
+    
+    <!-- Enlazamos el script del frontend externo al final del body -->
+    <script src="js/ui.js"></script>
+  </body>
+</html>
