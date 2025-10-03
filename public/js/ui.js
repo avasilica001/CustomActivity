@@ -27,9 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Campos "hard-coded" que la actividad siempre necesita resolver desde la fuente de entrada.
   // Definirlos aquí facilita el mantenimiento.
   const requiredFields = {
-    phone: 'MobilePhone',
-    message: 'SMSMessage',
-    from: 'SMSFrom'
+    prompt: 'Prompt'
   };
 
   
@@ -284,14 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (eventDefinitionKey) {
-      inArgs.phone = `{{Event.${eventDefinitionKey}.${requiredFields.phone}}}`;
-      inArgs.message = `{{Event.${eventDefinitionKey}.${requiredFields.message}}}`;
-      inArgs.from = `{{Event.${eventDefinitionKey}.${requiredFields.from}}}`;
+      inArgs.prompt = `{{Event.${eventDefinitionKey}.${requiredFields.prompt}}}`;
     } else {
       // Fallback si no se encuentra el eventDefinitionKey. Esto no es obligatorio pero permite buscar en ContactData
-      inArgs.phone = `{{Contact.Attribute.DataExtension.${requiredFields.phone}}}`;
-      inArgs.message = `{{Contact.Attribute.DataExtension.${requiredFields.message}}}`;
-      inArgs.from = `{{Contact.Attribute.DataExtension.${requiredFields.from}}}`;
+      //inArgs.phone = `{{Contact.Attribute.DataExtension.${requiredFields.phone}}}`;
+      //inArgs.message = `{{Contact.Attribute.DataExtension.${requiredFields.message}}}`;
+      //inArgs.from = `{{Contact.Attribute.DataExtension.${requiredFields.from}}}`;
     }
 
     // Reemplazar los argumentos en el payload con el nuevo objeto construido.
