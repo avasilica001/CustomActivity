@@ -51,7 +51,7 @@ async function getMockServiceToken() {
   // Creamos la promesa y la guardamos. Las siguientes peticiones concurrentes entrarán en el 'Caso 2'.
   tokenPromise = new Promise(async (resolve, reject) => {
     try {
-      const tokenResponse = await axios.post('https://b9b67f2c-daf7-47aa-b8d7-8f42e290511a.mock.pstmn.io/token', {});
+      const tokenResponse = await axios.post('https://947d44b9-4baf-440e-a08e-faf9d5770876.mock.pstmn.io/token', {});
       
       // Validar que la respuesta de la API tiene la estructura esperada.
       if (!tokenResponse.data || !tokenResponse.data.access_token || !tokenResponse.data.expires_in) {
@@ -99,7 +99,7 @@ async function sendPush(pushPayload) {
     
     // Realizar la petición POST al endpoint /push, incluyendo el token en la cabecera de autorización.
     const pushResponse = await axios.post(
-      'https://b9b67f2c-daf7-47aa-b8d7-8f42e290511a.mock.pstmn.io/push',
+      'https://947d44b9-4baf-440e-a08e-faf9d5770876.mock.pstmn.io/push',
       pushPayload,
       {
         headers: { 
