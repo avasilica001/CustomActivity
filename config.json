@@ -5,17 +5,17 @@
     "category": "message"
   },
   "type": "REST",
-  "key": "Mock_CustomActivity",
+  "key": "AV_CustomActivity",
   "lang": {
     "en-US": {
-      "name": "Mock Custom Activity",
+      "name": "AV Mock Custom Activity",
       "description": "Realiza una llamada a un WS Mock"
     }
   },
   "arguments": {
     "execute": {
       "inArguments": [],
-      "url": "https://customactivity-mock.onrender.com/execute",
+      "url": "https://customactivity-q9oa.onrender.com/execute",
       "verb": "POST",
       "format": "json",
       "useJwt": true,
@@ -24,19 +24,19 @@
   },
   "configurationArguments": {
     "save": {
-      "url": "https://customactivity-mock.onrender.com/save",
+      "url": "https://customactivity-q9oa.onrender.com/save",
       "useJwt": true
     },
     "publish": {
-      "url": "https://customactivity-mock.onrender.com/publish",
+      "url": "https://customactivity-q9oa.onrender.com/publish",
       "useJwt": true
     },
     "validate": {
-      "url": "https://customactivity-mock.onrender.com/validate",
+      "url": "https://customactivity-q9oa.onrender.com/validate",
       "useJwt": true
     },
     "stop": {
-      "url": "https://customactivity-mock.onrender.com/stop",
+      "url": "https://customactivity-q9oa.onrender.com/stop",
       "useJwt": true
     }
   },
@@ -45,11 +45,11 @@
       "height": 500,
       "width": 600,
       "fullscreen": false,
-      "url": "https://customactivity-mock.onrender.com/config.html"
+      "url": "https://customactivity-q9oa.onrender.com/config.html"
     }
   },
   "edit": {
-    "url": "https://customactivity-mock.onrender.com/config.html",
+    "url": "https://customactivity-q9oa.onrender.com/config.html",
     "height": 500,
     "width": 600
   }
