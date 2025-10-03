@@ -93,23 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // --- Paso 1: Construir el desplegable de campos de la DE (síncrono) ---
       schemaFields = data.schema; 
-      const deFieldSelect = document.getElementById('de-field-picklist');
-      deFieldSelect.innerHTML = ''; 
-
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.innerText = '-- Seleccione un campo --';
-      deFieldSelect.appendChild(defaultOption);
-
-      schemaFields.forEach(field => {
-        const option = document.createElement('option');
-        option.innerText = field.name; // Lo que ve el usuario (ej: "FirstName")
-        option.value = `{{${field.key}}}`; // El valor guardado, el data binding completo.
-        deFieldSelect.appendChild(option);
-      });
       
       // --- Paso 2: ESPERAR a que el desplegable de templates (asíncrono) termine de construirse ---
-      await populateDETemplates();
+      //await populateDETemplates();
 
       // --- Paso 3: AHORA que toda la UI está lista, rellenar el formulario con los datos guardados ---
       loadFormData();
@@ -150,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Llama al endpoint /api/templates del backend para obtener los templates de la DE,
    * y luego construye las opciones del desplegable correspondiente.
    */
-  async function populateDETemplates() {
+  /*async function populateDETemplates() {
     const select = document.getElementById('template-de-picklist');
     try {
       const response = await fetch('/api/templates');
@@ -186,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error al cargar templates de la DE:', error);
       select.innerHTML = '<option value="">-- Error al cargar --</option>';
     }
-  }
+  }*/
 
   /**
    * Lee la configuración guardada en el objeto 'payload' y la usa para
@@ -200,11 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Rellenar cada campo del formulario con el valor guardado, o un valor por defecto si no existe.
       document.getElementById('text-input').value = inArgs.customText || '';
-      document.getElementById('template-picklist').value = inArgs.selectedTemplate || 'Template1';
-      document.getElementById('de-field-picklist').value = inArgs.selectedDEField || '';
 
-      const selectedTemplateId = inArgs.selectedTemplateId || '';
-      document.getElementById('template-de-picklist').value = selectedTemplateId;
+      //const selectedTemplateId = inArgs.selectedTemplateId || '';
+      //document.getElementById('template-de-picklist').value = selectedTemplateId;
       
       // Llamar a la función de vista previa para mostrar el mensaje si hay un template seleccionado al cargar.
       updateMessagePreview();
@@ -216,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Se ejecuta cuando se carga el formulario y cada vez que el usuario cambia la
    * selección del desplegable de templates.
    */
-  function updateMessagePreview() {
+  /*function updateMessagePreview() {
     const select = document.getElementById('template-de-picklist');
     const previewContainer = document.getElementById('template-message-preview');
     const messageTextSpan = document.getElementById('message-text');
@@ -239,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Si no, ocultamos la vista previa.
       previewContainer.style.display = 'none';
     }
-  }
+  }*/
 
   /**
    * Recoge todos los valores actuales del formulario y los guarda en la estructura
@@ -250,11 +234,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Recoger los valores de cada campo del formulario.
     inArgs.customText = document.getElementById('text-input').value;
-    inArgs.selectedTemplate = document.getElementById('template-picklist').value;
-    inArgs.selectedDEField = document.getElementById('de-field-picklist').value;
+    //inArgs.selectedTemplate = document.getElementById('template-picklist').value;
+    //inArgs.selectedDEField = document.getElementById('de-field-picklist').value;
 
-    const selectedTemplateId = document.getElementById('template-de-picklist').value;
-    inArgs.selectedTemplateId = selectedTemplateId;
+    //const selectedTemplateId = document.getElementById('template-de-picklist').value;
+    //inArgs.selectedTemplateId = selectedTemplateId;
    
     // --- Construcción de los Data Bindings ---
     // Extraer el eventDefinitionKey (UUID del evento) del esquema para crear bindings robustos.

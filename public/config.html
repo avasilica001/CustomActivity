@@ -4,16 +4,13 @@
     <meta charset="UTF-8" />
     <title>Custom Activity Mock</title>
     <script src="https://unpkg.com/postmonger"></script>
-    <!-- Enlazamos la hoja de estilos externa -->
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>    
-    <!-- Contenedor para el mensaje de carga o error. Visible por defecto. -->
+  <body>      
     <div id="loader-container">
       <p>Cargando configuración...</p>
     </div>
 
-    <!-- Contenedor para todo el formulario. Oculto por defecto. -->
     <div id="form-container">
       <div class="header">
         <h2>Configuración de la Actividad</h2>
@@ -23,57 +20,54 @@
         <p>Configure los parámetros que se enviarán al servicio externo para cada contacto en el Journey.</p>
       </div>
 
-      <!-- Sección de Configuración Estática -->
       <div class="form-section">
         <h3 class="section-title">Parámetros Estáticos</h3>
-        <div class="form-field">
-          <label for="text-input">Texto de Referencia</label>
-          <input type="text" id="text-input" placeholder="Introduzca un valor de texto"/>
-          <div class="field-desc">Este valor se enviará como 'customText' en los argumentos.</div>
-        </div>
         
         <div class="form-field">
-          <label for="template-picklist">Plantilla Fija</label>
-          <select id="template-picklist">
-            <option value="Template1">Template Fija 1</option>
-            <option value="Template2">Template Fija 2</option>
-            <option value="Template3">Template Fija 3</option>
-          </select>
-          <div class="field-desc">La plantilla seleccionada se enviará como 'selectedTemplate'.</div>
-        </div>
-      </div>
-
-      <!-- Sección de Configuración Dinámica -->
-      <div class="form-section">
-        <h3 class="section-title">Parámetros Dinámicos</h3>
-        <div class="form-field">
-          <label for="template-de-picklist">Plantilla desde Data Extension</label>
-          <select id="template-de-picklist">
-              <option value="">-- Cargando templates... --</option>
-          </select>
-          <div class="field-desc">La plantilla seleccionada se guardará como 'selectedTemplateId'.</div>
-          <div id="template-message-preview" style="margin-top: 10px; padding: 10px; background-color: #f3f3f3; border-radius: 4px; font-style: italic; display: none;">
-              <strong>Mensaje:</strong> <span id="message-text"></span>
+          <label>Origen del Prompt</label>
+          <div class="radio-group">
+            <input type="radio" id="prompt-de" name="prompt-source" value="de" checked>
+            <label for="prompt-de">Usar prompt de la DE de origen</label>
+            <input type="radio" id="prompt-write" name="prompt-source" value="write">
+            <label for="prompt-write">Escribir prompt</label>
           </div>
         </div>
-
-        <div class="form-field">
-          <label for="de-field-picklist">Campo de la Fuente de Entrada</label>
-          <select id="de-field-picklist">
-              <option value="">-- Campos de la DE... --</option>
-          </select>
-          <div class="field-desc">
-            Seleccione un campo de la Data Extension de entrada del Journey.
+        
+        <div id="text-input-container" style="display: none;"> 
+          <div class="form-field">
+            <label for="text-input">Prompt de Referencia</label>
+            <input type="text" id="text-input" placeholder="Introduzca un valor de texto"/>
+            <div class="field-desc">Este valor se usará como prompt para que Gemini genere un asunto.</div>
           </div>
         </div>
-      </div>
-
-      <div class="info-box note">
-        <strong>Nota:</strong> Asegúrese de que los campos 'MobilePhone', 'SMSMessage' y 'SMSFrom' existan en la fuente de entrada del Journey.
+        
       </div>
     </div>
     
-    <!-- Enlazamos el script del frontend externo al final del body -->
     <script src="js/ui.js"></script>
+    <script>
+      // Lógica de JavaScript para mostrar/ocultar el campo de texto
+      document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('input[name="prompt-source"]');
+        const textInputContainer = document.getElementById('text-input-container');
+
+        // Función para manejar el cambio
+        function handlePromptSourceChange() {
+          if (document.getElementById('prompt-write').checked) {
+            textInputContainer.style.display = 'block'; // Muestra el contenedor
+          } else {
+            textInputContainer.style.display = 'none'; // Oculta el contenedor
+          }
+        }
+
+        // Asignar el evento 'change' a todos los radio buttons
+        radioButtons.forEach(radio => {
+          radio.addEventListener('change', handlePromptSourceChange);
+        });
+
+        // Llamar una vez al inicio para establecer el estado correcto (si "Escribir prompt" NO está marcado por defecto, se oculta)
+        handlePromptSourceChange();
+      });
+    </script>
   </body>
 </html>
